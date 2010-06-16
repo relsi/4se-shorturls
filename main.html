@@ -1,0 +1,150 @@
+{% comment %}
+// Variables for this template:
+// urly - this is an urly instance to show (we use code and href properties)
+// error_404 - an error message to show the user
+// default_href - default href to dump into text area. Why do we have this?
+// error_href - set when we have an improperly formatted href
+{% endcomment %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <title>a.4se.in - Gerador de Urls Curtas</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta property="og:title" content="a.4se.in" />
+  <meta property="og:url" content="http://a.4se.in/" />
+  <meta property="og:type" content="website" />
+  <meta property="fb:admins" content="534232326" />
+  <script type="text/javascript" src="static/urly.js"></script>
+<!--<script src="http://platform.twitter.com/anywhere.js?id=tlX9TVcBj0bfPI6E1rE9lA&v=1" type="text/javascript"></script> -->
+  <link rel="stylesheet" type="text/css" href="static/style/main.css" />
+</head>
+
+
+<body style="font-family: verdana, arial; font-size: 80%; text-align: center">
+<!-- Begin Wrapper -->
+<div id="wrapper">
+        <!-- Begin Header -->
+         <div id="header">
+             <span style="float: right">
+                <a href="http://code.google.com/appengine/"><img border="0" src="static/images/appengine-noborder-120x30.gif" /></a>
+             </span>
+             <a href="/"><img border="0" style="padding-top: 3px;" src="static/images/urly.gif" alt=" - dang short urls" /></a>
+	 </div>
+	<!-- End Header -->
+       
+        <!-- Begin Navigation -->
+         <div id="navigation">
+
+<div style="padding-bottom: 3px;">Insira a url que será encurtada:</div>
+
+<form action="new.html" method="get" accept-charset="utf-8">
+<input type="tex" name="href" id="href" size="50" value="{{ default_href }}">
+<input type="submit" value="Criar" />
+</form>
+
+
+</div>
+	 <!-- End Navigation -->
+
+
+
+{% if error_404 or urly or error_href %}
+<div style="margin-top: 5px; margin-bottom: 15px;">
+  {% if error_404 %}Oops - we couldn't find that urly.{% endif %}
+  {% if error_href %}Oops - that address doesn't look right... we can't create a dang short url from it.{% endif %}
+  
+
+	 <!-- Begin Navigation -->
+         <div id="navigation">
+{% if urly %}
+  {{ urly.href }} is now dang short, and <b>its already on your clipboard</b>.<br />
+  <input id="href" name="href" type="text" style="margin-top: 5px; padding: 3px; width: 600px; border: 1px solid #cccccc;" value="http://a.4se.in/{{ urly.code }}" />
+  <script type="text/javascript" language="javascript">window.onload = copy("http://a.4se.in/{{ urly.code }}");</script>
+  <script type="text/javascript" language="javascript">window.onload = focus("href");</script>
+ 
+ <div style="margin-top:15px">
+    Tweet about your url:
+    <div id="tbox"></div>
+    <script type="text/javascript">
+      twttr.anywhere(function (T) {
+        T("#tbox").tweetBox({
+          height: 65,
+          width: 600,
+          counter: false,
+          defaultContent: "{{ title }} http://a.4se.in/{{ urly.code }}",
+          label: " "
+        });
+      });
+    </script>
+  <a href="http://a.4se.in/{{ urly.code }}">Teste a Url</a> ou compartilhe no <a href="http://twitter.com/home?status={{ title|urlencode }}+http%3A%2F%2Fa.4se.in%2F{{ urly.code }}">Twitter</a> ou no <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fa.4se.in%2F{{ urly.code }}&t={{ title|urlencode }}">Facebook</a>  
+  </div>
+  {% endif %}
+ </div>
+	 <!-- End Navigation -->
+
+</div>
+{% endif %}
+
+
+<!-- Begin Left Column -->
+		 <div id="leftcolumn">
+		 
+		       Bloco 1
+		 
+		 </div>
+		 <!-- End Left Column -->
+		 
+		 <!-- Begin Left Middle Column -->
+		 <div id="leftmiddle">
+		       
+               Bloco 2		 
+			   
+         </div>
+		 <!-- End Left Middle Column -->
+		 
+		 <!-- Begin Right Middle Column -->
+		 <div id="rightmiddle">
+		 
+		      bloco 3
+		 
+		 </div>
+		 <!-- End Right Middle Column -->
+		 
+		 <!-- Begin Right Column -->
+		 <div id="rightcolumn">
+		 
+		       bloco 4
+		 
+		 
+		 
+		 
+		 </div>
+		 <!-- End Right Column -->
+		 
+		 <div class="clear"></div>
+
+
+
+
+<div id="ft" style="margin-top: 10px; padding-top: 5px; border-top: 1px solid #f1f1f1;"><span style="float: right"><a href="http://github.com/ajstiles/urly">Code</a> and <a href="http://wiki.github.com/ajstiles/urly">API</a></span>
+  Drag this link to your browser toolbar:&nbsp;
+  <a href="javascript:location.href='http://a.4se.in/new.html?href='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title)">a.4se.in!</a>
+</div>
+
+   <!-- 
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-81531-8");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+-->
+
+</div>
+<!-- End Wrapper -->
+
+</body>
+</html>
